@@ -1,8 +1,18 @@
-	// Bibliotéques
+/**
+ *  REALTIME WHITE-BOARD
+ *	@author S.Wouters - www.doelia.fr
+ *	@date 01.12.2014
+ *	@source https://github.com/Doelia/realtimeboard
+ */
+
+///////////////////// BIBLIOTHEQUES ///////////////////////////
+
 var express = require('express');
 var fs = require('fs');
 var connect = require('connect');
 var app = express();
+
+///////////////////// SERVEUR HTTP ///////////////////////////
 
 var server = app.listen(8080);
 
@@ -29,25 +39,43 @@ app.get('/:file.js', function (req, res) {
 	res.write(fs.readFileSync('public/js/'+req.params.file+'.js', 'utf8'));
 	res.end();
 });
-	
+
 app.get('/', function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write(fs.readFileSync('views/template.html', 'utf8'));
 	res.end();
 });
 
+
+///////////////////// WEB SOCKETS ///////////////////////////
+
 var io = require('socket.io').listen(server);
 
 var lastLines = new Array();
+var nbrUsers = 0;
 
 io.sockets.on('connection', function (socket) {
 
+	/* Envoi des derniers tracés */
 	socket.emit('drawLines', lastLines);
 
-    socket.on('drawLines', function(datas) {
-    	for (var i in datas)
-    		lastLines.push(datas[i]);
-    	socket.broadcast.emit('drawLines', datas);
-    });
+	/* Mise à jour du nombre de connectés */
+	nbrUsers++;
+	socket.broadcast.emit('refresh-users', nbrUsers);
+	socket.emit('refresh-users', nbrUsers);
+
+	/* Si quelqu'un dessine, on envoi à tout le monde ses tracés */
+	socket.on('drawLines', function(datas) {
+		for (var i in datas)
+			lastLines.push(datas[i]);
+		socket.broadcast.emit('drawLines', datas);
+	});
+
+	/* Si quelqu'un se déconnecte, on met à jour le nombre de connecté */
+	socket.on('disconnect', function(){
+		nbrUsers--;
+		socket.broadcast.emit('refresh-users', nbrUsers);
+	})
+
 });
 

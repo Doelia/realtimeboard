@@ -1,5 +1,14 @@
+/**
+ *  REALTIME WHITE-BOARD
+ *	@author S.Wouters - www.doelia.fr
+ *	@date 01.12.2014
+ *	@source https://github.com/Doelia/realtimeboard
+ */
+
 var socketObj = null;
 var canvasObj = null;
+
+////////////////// GESTION DU CANVAS ////////////////////////////
 
 function CanvasClass() {
 
@@ -8,7 +17,7 @@ function CanvasClass() {
 	this.context = this.canvas[0].getContext('2d');
 
 	// Options modifiables
-	this.color = "green";
+	this.color = "black";
 	this.sizeBrush = 3;
 	
 	// Variables d'êtats
@@ -16,6 +25,7 @@ function CanvasClass() {
 	this.last = null;
 	var that = this;
 
+	// Trace un trait de A à B
 	this.drawLine = function(data) {
 		this.context.beginPath();
 		this.context.moveTo(data.a.x, data.a.y);
@@ -25,6 +35,7 @@ function CanvasClass() {
 		this.context.stroke();
 	}
 
+	// Récupère la position du curseur
 	this.getPositionCursor = function(e) {
 		var parentOffset = that.canvas.parent().offset(); 
 		var relX = e.pageX - parentOffset.left;
@@ -32,15 +43,18 @@ function CanvasClass() {
 		return {x: relX, y: relY};
 	}
 
+	// Bouton de la sourie enfoncé, on active le dessin
 	this.canvas.mousedown(function(e) {
 		that.last = that.getPositionCursor(e);
 		that.draw = true;
 	});
 
+	// Bouton de la sourie relaché, on désactive le dessin
 	this.canvas.mouseup(function() {
 		that.draw = false;
 	});
 
+	// Sourie déplacée, on trace le nouveau trait
 	this.canvas.mousemove(function(e) {
 		if (that.draw) {
 			var pos = that.getPositionCursor(e);
@@ -56,6 +70,8 @@ function CanvasClass() {
 		}
 	});
 }
+
+/////////////// GESTION DU RESEAU ////////////////////////////
 
 function NetworkClass() {
 	
@@ -86,8 +102,8 @@ function NetworkClass() {
 		}
 	});
 
-	this.socket.on('close', function() {
-		that.stopAll();
+	this.socket.on('refresh-users', function(n) {
+		$('#users').html(n);
 	});
 
 	this.socket.on('disconnect', function() {
@@ -96,20 +112,27 @@ function NetworkClass() {
 
 }
 
+
+/////////////////// INITIALISATIONS ////////////////////
+
 $(document).ready(function() {
+
+	// Initialisation des objets
 	canvasObj = new CanvasClass();
 	socketObj = new NetworkClass();
 
+	// Choix de la couleur
 	$('#colorpicker').farbtastic();
 	var picker = $.farbtastic('#colorpicker');
 	picker.linkTo(function onColorChange(color) {
 		canvasObj.color = color;
 	});
 
-
+	// Choix de la taille
 	$('#sizeSelector').change(function() {
 		canvasObj.sizeBrush = $(this).val();
 	})
+
 });
 
 
