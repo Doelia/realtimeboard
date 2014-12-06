@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Tutoriel - Tableau Blanc Colaboratif</title>
+
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+
+	<div class="container">
+		<h1>Réalisation d'un tableau blanc colaboratif</h1>
+
+		<p>Cette page explique la réalisation d'un simple tableau blanc colaboratif en Node.js. Un aperçu de l'application finale :</p>
+
+		<p>
+			<img src="screenshot-2.png">
+		</p>
+
+		<p>
+			<a class="btn btn-success" href="http://desinia.doelia.fr" target="_blank"><i class="fa fa-play-circle"></i> Démo</a>
+			<a class="btn btn-primary" href="https://github.com/doelia/realtimeboard" target="_blank"><i class="fa fa-github"></i> GitHub</a>
+			<a class="btn btn-primary" href="code_source.zip" target="_blank"><i class="fa fa-download"></i> Code source</a>
+		</p>
+
+		<h2>Fonctionnalités</h2>
+		<p>
+			Le tableau blanc présentera les fonctionnalités suivantes :
+			<ul>
+				<li><strong>Dessin avec la sourie</strong> sur une surface blanche de taille définie ;</li>
+				<li>Choix de la <strong>taille</strong> et de la <strong>couleur</strong> du pinceau ;
+					<ul>
+						<li><i>Le choix de la couleur de sera pas traité dans ce tutoriel, nous utiliserons le  <a target="_blank" href="http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/">plugin jQuery Farbastic</a></i></li>
+					</ul>
+				</li>
+				<li><strong>Synchronisation du tableau</strong> avec d'autres utilisateurs en temps réel ;</li>
+				<li><strong>Système de mémoire</strong> pour récupération des derniers tracés lors d’une nouvelle connexion .</li>
+			</ul>
+
+		</p>
+
+		<h2>Technlogies</h2>
+		<p>
+			Ce tutoriel est conçu pour être un bon exemple d'utilisation des dernières technologies du web. Nous utiliserons :
+			<ul>
+				<li>Le <strong>Javascript</strong> comme un langage orienté objet ;</li>
+				<li><strong>Canvas</strong>, composante HTML5 ;</li>
+				<li><a href="http://nodejs.org/" target="_blank"><strong>Node.js</strong></a>, une technologie qui a beaucoup de succès en ce moment propsant des outils de réseau en Javascript ;</li>
+				<li>La bibliothèque <a href="http://jquery.com/" target="_blank"><strong>jQuery</strong></a>.</li>
+			</ul>
+		</p>
+
+		<h2>Somaire</h2>
+		<p>
+			<ol>
+				<li><a href="">Mise en place des outils</a></li>
+				<li><a href="">Serveur HTTP</a></li>
+				<li><a href="">Affichage HTML/CSS</a></li>
+				<li><a href="">Gestion du dessin</a></li>
+				<li><a href="">Sychronisation par sockets</a></li>
+			</ol>
+		</p>
+
+		<h2>Tutoriel</h2>
+
+		<h3>1. Mise en place des outils</h3>
+
+		<h4>1.1. Instalation Node.js</h4>
+
+		<p>
+			Une première partie nécessaire à la mise en place et à la configuration des outils.
+		</p>
+
+		<p>
+			Vous devez premièrement possèder Node.JS.
+		</p>
+		<p>
+			<a href="http://nodejs.org/" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> Téléchargement Node.js</a>
+		</p>
+
+		<p>
+			Node.js fonctionne avec un système de packet. Pour ce projet nous utiliserons les packets suivants :
+			<ul>
+				<li><strong>express</strong> (Utile pour créer un serveur HTTP)</li>
+				<li><strong>socket.io</strong> (Utile pour les websockets)</li>
+				<li><strong>fs</strong> (Utile pour gérer les fichiers)</li>
+			</ul>
+		</p>
+
+		<p>
+			L'instalation de ces packets peut se faire facilement avec la commande suivante :
+			<pre>npm install socket.io fs express</pre>
+		</p>
+
+		<h4>1.2. Système de fichiers</h4>
+
+		<p>Même si le projet ne comporte pas beaucoup de fichiers, nous ademetrons la structure de base suivante :</p>
+
+		<p>
+			<ul>
+				<li><strong>public/</strong> - <i>Dossier des resources pour le client</i>
+					<ul>
+						<li>
+							<strong>css/</strong>
+							<ul>
+								<li>style.css</li>
+							</ul>
+						</li>
+						<li><strong>img/</strong></li>
+						<li>
+							<strong>js/</strong>
+							<ul>
+								<li>main.js</li>
+								<li>jquery-2-1.0.js</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<strong>views/</strong>
+					<ul>
+						<li>template.html</li>
+					</ul>
+				</li>
+				<li>main.js - <i>Executable principal de l'application</i></li>
+			</ul>
+		</p>
+
+		<p>Vous pouvez trouver ici l'ensemble de cette architecture, constituant une base fonctionelle pour tout projet Node.js.</p>
+		<p>
+			<a href="" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> Architecture</a>
+		</p>
+
+		<p>Pour le tableau blanc, il faudra y ajouter les fichiers du plugin farbastic, pour obternir finalement ceci :</p>
+
+		<p>
+			<img src="arbo.png">
+		</p>
+
+		<h3>2. Serveur HTTP</h3>
+
+		<p>
+			Aucun serveur Apache/ PHP n’est utilisé. Seul NodeJS établit une communication avec le client, il faut donc envoyer les fichiers de bases au client (HTTP, CSS, JS). Pour cela nous utiliserons simplement express.
+			Ceci permettra d'afficher la page de base quand l'utilisateur se rendra à l'adresse <strong>http://localhost:8080</strong>
+		</p>
+
+		</div>
+
+
+	</body>
+	</html>
+
