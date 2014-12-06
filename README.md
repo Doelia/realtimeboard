@@ -1,4 +1,10 @@
-survivia-matchmaking
+Tableau Blanc collaboratif
 ====================
 
-Nodejs packages : bignumber  bignumber.js  connect  cookie-parser  ejs  express  io  mysql  readable-stream  require-all  socket.io
+Très simple tableau blanc collaboratif en Javascript.
+
+Permet de dessiner sur un canvas synchronisé entre plusieurs utilisateurs.
+
+Développé en NodeJS/HTML5.
+
+Réalisé pour l'écriture d'un tutoriel dans un cadre universitaire.
