@@ -1,7 +1,6 @@
 var socketObj = null;
 var canvasObj = null;
 
-
 function CanvasClass() {
 
 	// Objet canvas
@@ -28,9 +27,9 @@ function CanvasClass() {
 
 	this.getPositionCursor = function(e) {
 		var parentOffset = that.canvas.parent().offset(); 
-   		var relX = e.pageX - parentOffset.left;
-   		var relY = e.pageY - parentOffset.top;
-   		return {x: relX, y: relY};
+		var relX = e.pageX - parentOffset.left;
+		var relY = e.pageY - parentOffset.top;
+		return {x: relX, y: relY};
 	}
 
 	this.canvas.mousedown(function(e) {
@@ -101,13 +100,16 @@ $(document).ready(function() {
 	canvasObj = new CanvasClass();
 	socketObj = new NetworkClass();
 
-	 $('#colorpicker').farbtastic();
-	 var picker = $.farbtastic('#colorpicker');
-	  picker.linkTo(function onColorChange(color) {
-        canvasObj.color = color;
-     });
+	$('#colorpicker').farbtastic();
+	var picker = $.farbtastic('#colorpicker');
+	picker.linkTo(function onColorChange(color) {
+		canvasObj.color = color;
+	});
+
+
+	$('#sizeSelector').change(function() {
+		canvasObj.sizeBrush = $(this).val();
+	})
 });
-
-
 
 

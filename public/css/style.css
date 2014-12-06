@@ -1,14 +1,33 @@
-html {
-	background: rgb(30,30,30);
-	color: white;
-	font-family: ubuntu;
+::selection {
+    background : transparent;
 }
 
-#canvas {
-	height: 400px;
-	width: 800px;
-	background: white;
+body {
+	background: rgb(30,30,30);
+	color: white;
+	font-family: verdana;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.main {
+	margin: auto;
+	width: 1020px;
+}
+
+header, .rightBox .box  {
+	background: rgb(40,40,40);
 	border-radius: 5px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid rgb(70,70,70);
+}
+
+header {
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	padding: 3px;
 }
 
 .leftBox {
@@ -16,26 +35,41 @@ html {
 }
 
 .rightBox {
-	float: right;
-	background: rgb(50,50,50);
+	float: left;
+	margin-left: 10px;
+}
+
+.rightBox .box {
 	width: 200px;
 }
 
+.rightBox .box .content {
+	padding: 10px;
+}
+
 .rightBox h2 {
-	font-size: 13px;
+	background: rgb(50,50,50);
+	border-radius: 5px;
+	font-size: 11px;
 	width: 100%;
-	border-bottom: 1px solid rgb(100,100,100);
+	border-bottom: 1px solid rgb(70,70,70);
 	margin: 0;
 	padding: 0;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-align: center;
+	text-transform: uppercase;
 }
 
-.rightBox .content {
-	padding: 10px;
+#sizeSelector {
+	width: 100%;
 }
 
-h3 {
-	font-size: 11px;
+#canvas {
+	height: 600px;
+	width: 800px;
+	background: white;
+	border-radius: 5px;
+	border: 5px solid rgb(40,40,40);
 }
+

@@ -18,28 +18,48 @@
 
 	<script type="text/javascript" src="farbtastic.js"></script>
 
-
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="main.js"></script>
 </head>
 
 <body>
 
+<header id="header">
+	2 user(s) online
+</header>
 
+<div class="main">
 
-<div class="leftBox">
-<canvas id="canvas" width="800" height="400"></canvas>
-</div>
+	<div class="leftBox">
+		<canvas id="canvas" width="800" height="600"></canvas>
+	</div>
 
-<div class="rightBox">
-	<h2>Options</h2>
+	<div class="rightBox">
+		<div class="box">
+			<h2>Color selector</h2>
+			<div class="content">
+				<div id="colorpicker"></div>
+			</div>
+		</div>
+		<div class="box">
+			<h2>Brush size</h2>
+			<div class="content">
+				<select id="sizeSelector">
+					<option value="1">Taille 1</option>
+					<option value="3" selected="selected">Taille 3</option>
+					<option value="5">Taille 5</option>
+					<option value="8">Taille 8</option>
+					<option value="15">Taille 15</option>
+					<option value="40">Taille 40</option>
+					<option value="100">Taille 100</option>
+					<option value="300">Taille 300</option>
+				</select>
+			</div>
+		</div>
 
-	<div class="content">
-		<div id="colorpicker"></div>
 	</div>
 
 </div>
-
 	
 </body>
 </html>
