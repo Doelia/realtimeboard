@@ -4,10 +4,9 @@
 <?php require("col-left.php"); ?>
 <div class="col-md-9">
 
-
 <h3>3. Le tableau blanc</h3>
 
-<p>Le code Javascript du tableau blanc est écrit dans le fichier <strong>public/js/main.js</strong></p>
+<p>Le code Javascript du tableau blanc est écrit dans le fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/public/js/main.js" target="_blank"><strong>public/js/main.js</strong></a></p>
 
 <p>Nous détaillerons premièrement cette partie du code, qui permet de gérer le dessin sur le canvas.</p>
 
@@ -44,18 +43,18 @@
 		return {x: relX, y: relY};
 	}
 
-	// Bouton de la sourie enfoncé, on active le dessin
+	// Bouton de la souris enfoncé, on active le dessin
 	this.canvas.mousedown(function(e) {
 		that.last = that.getPositionCursor(e);
 		that.draw = true;
 	});
 
-	// Bouton de la sourie relaché, on désactive le dessin
+	// Bouton de la souris relaché, on désactive le dessin
 	this.canvas.mouseup(function() {
 		that.draw = false;
 	});
 
-	// Sourie déplacée, on trace le nouveau trait
+	// souris déplacée, on trace le nouveau trait
 	this.canvas.mousemove(function(e) {
 		if (that.draw) {
 			var pos = that.getPositionCursor(e);
@@ -113,7 +112,7 @@ Pour éviter de passer une dizaine de parametres, on utilise une structure <stro
 <h4>Position du curseur</h4>
 
 <p>
-	Récupérer la position du curseur est quelque chose de très pénible et difficile en Javascript. On crée donc une fonction pour ça :
+	Récupérer la position du curseur est quelque chose de très pénible et difficile en Javascript. On écrit une fonction pour ça :
 </p>
 
 <pre><code class="language-javascript">// Récupère la position du curseur
@@ -124,38 +123,38 @@ this.getPositionCursor = function(e) {
 	return {x: relX, y: relY}; // On retourne une structure {x,y}
 }</code></pre>
 
-<h4>Gestion de la sourie</h4>
+<h4>Gestion de la souris</h4>
 
-<p>Il y a 3 évenements à gérer sur la sourie :
+<p>Il y a 3 évenements à gérer sur la souris :
 <ul>
 	<li>L'utilisateur presse le bouton, il faut commencer à dessiner</li>
-	<li>L'utilisateur bouge la sourie, il faut dessiner le tracé</li>
+	<li>L'utilisateur bouge la souris, il faut dessiner le tracé</li>
 	<li>L'utilisateur relache le bouton, il faut arrêter de tracer</li>
 </ul>
 </p>
 
 <p>On utilisera un boolean propre à la classe Canvas, qu'on activera quand l'utilisateur est en train de dessiner :</p>
 
-<pre><code class="language-javascript">// Bouton de la sourie enfoncé, on active le dessin
+<pre><code class="language-javascript">// Bouton de la souris enfoncé, on active le dessin
 this.canvas.mousedown(function(e) {
 	that.last = that.getPositionCursor(e); // Expliqué si-dessous.
 	that.draw = true;
 });
 
-// Bouton de la sourie relaché, on désactive le dessin
+// Bouton de la souris relaché, on désactive le dessin
 this.canvas.mouseup(function() {
 	that.draw = false;
 });</code></pre>
 
-<p>Ensuite la gestion du mouvement n'est pas très compliqué. Quand l'utilisateur bouge la sourie, il suffit de dessiner un trait entre la nouvelle position de la sourie et la précedente. On stock donc la position précédente de la sourie dés le démarrage du tracé et à chaque mouvement.
-On construit la structure data en fonction des parametres enregistrés, et c'est tout :</p>
+<p>Ensuite la gestion du mouvement n'est pas très compliqué. Quand l'utilisateur bouge la souris, il suffit de dessiner un trait entre la nouvelle position de la souris et la précedente. On stock donc la position précédente de la souris dés le démarrage du tracé et à chaque mouvement.
+On construit la structure data en fonction des parametres enregistrés, et on la passe à la fonction <strong>drawLine()</strong>.</p>
 
-<pre><code class="language-javascript">// Sourie déplacée, on trace le nouveau trait
+<pre><code class="language-javascript">// souris déplacée, on trace le nouveau trait
 this.canvas.mousemove(function(e) {
 
 	if (that.draw) { // Si on est en train de dessiner...
 
-		var pos = that.getPositionCursor(e); // Position actuelle de la sourie
+		var pos = that.getPositionCursor(e); // Position actuelle de la souris
 
 		// On crée une structure pour la dessiner
 		var data = {

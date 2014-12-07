@@ -1,9 +1,8 @@
 <?php require("header.php"); ?>
 
-
 <p>
 	<a href="http://desinia.doelia.fr" target="_blank">
-	<img src="screenshot-2.png">
+		<img class="img-responsive" src="screenshot-2.png">
 	</a>
 </p>
 
@@ -19,7 +18,7 @@
 <p>
 	Le tableau blanc présente les fonctionnalités suivantes :
 	<ul>
-		<li><strong>Dessin avec la sourie</strong> sur une surface blanche de taille définie ;</li>
+		<li><strong>Dessin avec la souris</strong> sur une surface blanche de taille définie ;</li>
 		<li>Choix de la <strong>taille</strong> et de la <strong>couleur</strong> du pinceau ;
 			<ul>
 				<li><i>Le choix de la couleur de sera pas traité dans cette technote, nous utiliserons le <a target="_blank" href="http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/">plugin jQuery Farbastic</a></i></li>
@@ -28,10 +27,7 @@
 		<li><strong>Synchronisation du tableau</strong> avec d'autres utilisateurs en temps réel ;</li>
 		<li><strong>Système de mémoire</strong> pour récupération des derniers tracés lors d’une nouvelle connexion .</li>
 	</ul>
-
 </p>
-
-
 
 <h2>Technologies</h2>
 <p>
@@ -44,18 +40,16 @@
 	</ul>
 </p>
 
-
-
 <?php require('somaire.php'); ?>
 <br>
+
 <p>
-	<a href="1-setup.php" class="btn btn-primary"><i class="fa fa-caret-square-o-right"></i> Accès technote </a>
+	<a href="1-setup.php" class="btn btn-primary"><i class="fa fa-caret-square-o-right"></i> Accès technote</a>
 </p>
 
 <hr>
 
 </div>
-
 
 </body>
 </html>

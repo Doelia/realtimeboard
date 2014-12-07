@@ -24,7 +24,7 @@
 					<li>
 						<strong>js/</strong>
 						<ul>
-							<li>main.js</li>
+							<li>main.js - <i>Fichier JS cote client</i></li>
 							<li>jquery-2-1.0.js</li>
 						</ul>
 					</li>
@@ -58,7 +58,7 @@
 </p>
 
 <p>
-	Il est également necessaire d'ajouter les fichiers <strong>farbastatic.js</strong> et <strong>farbastatic.css</strong> du plugin Farbastatic.
+	Il est également necessaire d'ajouter les fichiers <strong>farbastatic.js</strong> et <strong>farbastatic.css</strong> du plugin <a href="http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/" target="_blank">Farbastatic</a>.
 </p>
 
 <p>
@@ -73,14 +73,11 @@
 <i class="fa fa-info"></i>
 Inutile d'essayer de lancer le serveur, pour le moment ces fichiers ne sont pas lus par le serveur.</p>
 
-
 <?php nav('1-setup.php', '3-board.php'); ?>
 
 </div>
 
 </div>
 
-
 </body>
 </html>
-

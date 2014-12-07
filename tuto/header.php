@@ -5,9 +5,11 @@ function nav($prev, $next) {
 	<p class="pull-left">
 	<a href="<?php echo $prev ?>" class="btn btn-default"><i class="fa fa-caret-square-o-left"></i> Précedent </a>
 	</p>
+	<?php if ($next) { ?>
 	<p class="pull-right">
 		<a href="<?php echo $next ?>" class="btn btn-primary"><i class="fa fa-caret-square-o-right"></i> Suite </a>
 	</p>
+	<?php } ?>
 	<?php
 }
 ?>
