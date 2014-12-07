@@ -1,11 +1,8 @@
 <?php require("header.php"); ?>
 
-<p>
-<a href="index.php"><i class="fa fa-caret-left"></i> Retour à l'index</a>
-</p>
-
-<?php require("somaire.php"); ?>
-
+<div class="row">
+<?php require("col-left.php"); ?>
+<div class="col-md-9">
 
 <h3>4. Envoyer les fichiers par HTTP</h3>
 
@@ -61,10 +58,7 @@ res.end();
 });
 </code></pre>
 
-<p>Tout est maintenant configuré pour commencer le développement propre de l'application.</p>
-
-
-
+</div>
 
 </div>
 

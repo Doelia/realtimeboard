@@ -1,3 +1,17 @@
+<?php
+function nav($prev, $next) {
+	?>
+	<hr>
+	<p class="pull-left">
+	<a href="<?php echo $prev ?>" class="btn btn-default"><i class="fa fa-caret-square-o-left"></i> Précedent </a>
+	</p>
+	<p class="pull-right">
+		<a href="<?php echo $next ?>" class="btn btn-primary"><i class="fa fa-caret-square-o-right"></i> Suite </a>
+	</p>
+	<?php
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +21,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Réalisation d'un tableau blanc colaboratif</title>
+	<title>Réalisation d'un tableau blanc collaboratif</title>
 
 	<link rel="stylesheet" href="bootstrap.min.css">
 	<link rel="stylesheet" href="prism.css">
@@ -16,12 +30,14 @@
 	<script src="bootstrap.min.js"></script>
 	<script src="prism.js"></script>
 
-	<style type="text/css">.fa { margin-right: 3px; }</style>
+	<style type="text/css">.fa { margin-right: 3px; } h4 { margin-top: 25px; }</style>
 
 </head>
 
 <body>
 
 	<div class="container">
-		<h1>Réalisation d'un tableau blanc colaboratif</h1>
+
+		<h1>Réalisation d'un tableau blanc collaboratif</h1>
+		<hr>
 		
