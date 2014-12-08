@@ -7,8 +7,9 @@ Permet de dessiner sur un canvas synchronisé entre plusieurs utilisateurs.
 
 Développé en NodeJS/HTML5.
 
-Réalisé pour l'écriture d'un tutoriel dans un cadre universitaire.
+Réalisé pour l'écriture d'une technote dans un cadre universitaire.
 
 
+Démo : http://desinia.doelia.fr
+Technote : http://whiteboard.doelia.fr
 
-Démo et tuto disponible sous peu.
