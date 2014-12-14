@@ -27,9 +27,9 @@
 <p>
 	Les fonctions de bases de Node.js sont très simple. Sur un objet <b>socket</b> qui représente un serveur ou un client, on peut utiliser :
 	<ul>
-		<li><b>socket.on(nomDuPaquet, callback(datas))</b> une fonction de type évenentielle qui execute callback() quand on reçoit le paquet 'nomDuPaquet'.</li>
 		<li><b>socket.emit(nomDuPaquet, datas)</b> qui permet d'envoyer un paquet à un client particulier, ou au serveur</li>
 		<li><b>socket.brodcast.emit(nomDuPaquet, datas)</b> qui permet d'envoyer un paquet à tous les clients connectés</li>
+		<li><b>socket.on(nomDuPaquet, callback(datas))</b> une fonction de type évenentielle qui execute callback() quand on reçoit le paquet 'nomDuPaquet'.</li>
 	</ul>
 </p>
 

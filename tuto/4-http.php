@@ -12,6 +12,8 @@
 	Ceci permettra d'afficher une page HTML complète (Avec CSS et Javascript) quand l'utilisateur se rendra à l'adresse <strong>http://localhost:8080</strong>
 </p>
 
+<p class="alert alert-info">Note : Il est tout de meme possible d'utiliser Apache et Node.js, en utilisant un <a href="http://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server" target="_blank">système de proxy</a></p>
+
 <p>
 	Pour envoyer le fichier template.html au client quand il se rend à l'adersse localhost:8080, on ajoute les lignes suivantes au fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/main.js">main.js</a> :
 </p>

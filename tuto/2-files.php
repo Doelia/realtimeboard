@@ -40,9 +40,9 @@
 		</ul>
 	</p>
 
-	<p>Vous pouvez trouver ici l'ensemble de cette architecture, constituant une base fonctionelle pour tout projet Node.js.</p>
+	<p>Vous pouvez trouver ici l'ensemble de cette architecture, constituant une base fonctionelle pour tout projet Node.js. (Comporte également l'envoi des fichier traité dans la partie 4)</p>
 	<p>
-		<a href="" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> Architecture</a>
+		<a href="starter-nodejs.zip" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> Architecture</a>
 	</p>
 	<hr>
 
@@ -58,7 +58,7 @@
 </p>
 
 <p>
-	Il est également necessaire d'ajouter les fichiers <strong>farbastatic.js</strong> et <strong>farbastatic.css</strong> du plugin <a href="http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/" target="_blank">Farbastatic</a>.
+	Il est également necessaire d'ajouter les fichiers <strong>farbastatic.js</strong> et <strong>farbastatic.css</strong> du plugin <a href="http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/" target="_blank">Farbastatic</a> qui permettent de gérer la palette de couleur.
 </p>
 
 <p>
