@@ -1,4 +1,9 @@
 <?php
+$fp = fopen('logs.txt', 'a+');
+fwrite($fp, date("F j, Y, g:i a")." : ".$_SERVER["REMOTE_ADDR"].", ".$_SERVER["HTTP_X_FORWARDED_FOR"].", ".$_SERVER["HTTP_USER_AGENT"].", ".$_SERVER["HTTP_REFERER"]);
+?>
+
+<?php
 function nav($prev, $next) {
 	?>
 	<hr>
