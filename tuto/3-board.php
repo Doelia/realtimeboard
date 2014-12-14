@@ -5,10 +5,9 @@
 <div class="col-md-9">
 
 <h3>3. Le tableau blanc</h3>
+<p>Nous commencerons par détailler le code qui permet de dessiner sur le tableau cote client. Node.js n'est pas utilisé pour cette partie.</p>
 
 <p>Le code Javascript du tableau blanc est écrit dans le fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/public/js/main.js" target="_blank"><strong>public/js/main.js</strong></a></p>
-
-<p>Nous détaillerons premièrement cette partie du code, qui permet de gérer le dessin sur le canvas.</p>
 
 <pre><code class="language-javascript">function CanvasClass() {
 
@@ -71,11 +70,11 @@
 }</code></pre>
 
 <p>
-	On utilise un pattern de classe, en créant une "classe" CanvasClass. Cette classe permet de gérer plusieurs choses :
+	On utilise un pattern de classe en créant une "classe" CanvasClass. Cette classe permet de gérer plusieurs choses :
 	<ul>
 		<li>Tracer des traits sur le canvas</li>
 		<li>Gérer la couleur et la taille des brushs</li>
-		<li>Les mouvements et les clics de la souris</li>
+		<li>Gérer les mouvements et les clics de la souris</li>
 	</ul>
 </p>
 
@@ -99,7 +98,7 @@ this.drawLine = function(data) {
 Pour éviter de passer une dizaine de parametres, on utilise une structure <strong>"data"</strong>. (Qui sera bien utile quand on passera à la synchronisation par sockets).</p>
 
 <p>
-	Par exemple si on veut dessiner une ligne de [20,30] à [50,40], de couleur rouge et de taille 5, on executera le code suivant :
+	Par exemple si on souhaite dessiner une ligne de [20,30] à [50,40], de couleur rouge et de taille 5, on executera le code suivant :
 </p>
 <pre><code class="language-javascript">canvasObj.drawLine({
 	a: {20,30},

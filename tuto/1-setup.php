@@ -11,7 +11,7 @@
 	<h4>1.1. Instalation</h4>
 
 	<p>
-		 Node.js est une plateforme qui implémente un serveur HTTP et les websockets, entièrement en Javascript.
+		 Node.js est une plateforme qui permet d'implémenter un serveur HTTP et d'utiliser websockets, entièrement en Javascript.
 	</p>
 	<p>
 		<a href="http://nodejs.org/" target="_blank" class="btn btn-primary"><i class="fa fa-download"></i> Téléchargement Node.js</a>
@@ -21,14 +21,14 @@
 		Node.js fonctionne avec un système de packages. Pour ce projet nous utiliserons les packages suivants :
 		<ul>
 			<li><strong>express</strong> (Utile pour créer un serveur HTTP)</li>
-			<li><strong>socket.io</strong> (Utile pour les websockets)</li>
+			<li><strong>socket.io</strong> et <strong>connect</strong> (Utiles pour les websockets)</li>
 			<li><strong>fs</strong> (Utile pour gérer les fichiers)</li>
 		</ul>
 	</p>
 
 	<p>
 		L'instalation de ces packages peut se faire facilement avec la commande :
-		<pre>npm install socket.io fs express</pre>
+		<pre>npm install socket.io fs express connect</pre>
 	</p>
 
 	<hr>
@@ -49,7 +49,7 @@ app.get('/', function (req, res) {
 	res.end('Hello World\n');
 });</code></pre>
 
-	<p>L'execution de l'application avec Node.js se fait de la manière suivante, en se plaçant dans le répertoire racine :
+	<p>L'execution de l'application avec Node.js se fait de la manière suivante, en se plaçant dans votre répertoire :
 	<pre>nodejs main.js</pre>
 	Si tout fonctionne, vous devriez visioner un "Hello world" sur cette page : <a href="http://localhost:8080">http://localhost:8080</a>
 	</p>

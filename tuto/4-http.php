@@ -7,7 +7,8 @@
 <h3>4. Envoyer les fichiers par HTTP</h3>
 
 <p>
-	Aucun serveur Apache n’est requis (Inutile d'utiliser WAMP par exemple). Seul Node.JS établit une communication avec le client, il faut donc envoyer <i>manuellement</i> les fichiers de bases au client (HTML, CSS, JS). 
+	Quand on utilise Node.js, il n'est pas possible d'utiliser un serveur Apache/PHP classique pour envoyer les fichiers aux clients.
+	Dans cet exemple, aucun serveur Apache n’est requis (Inutile d'utiliser WAMP par exemple). Seul Node.JS établit une communication avec le client, il faut donc envoyer <i>manuellement</i> les fichiers de bases au client (HTML, CSS, JS). 
 	Ceci permettra d'afficher une page HTML complète (Avec CSS et Javascript) quand l'utilisateur se rendra à l'adresse <strong>http://localhost:8080</strong>
 </p>
 
@@ -54,6 +55,9 @@ app.get('/img/:file.png', function (req, res) {
 		res.end(img, 'binary');
 	});
 });</code></pre>
+
+<p>Ici on ne traite que les fichiers de type .css, .js et .png. Et ces fichiers doivent tous etre placés dans leur dossier respectif, sans sous dossier.
+C'est suffisant dans le cadre de cet exemple, mais on peut trouver des patterns plus complexes qui permettent de simuler totalement un serveur Apache.</p>
 
 Ceci fait, une fois le serveur lancé, vous pourrez visioner le tableau blanc fonctionnel à l'adresse <a href="http://localhost:8080">http://localhost:8080</a>.
 . Il ne reste plus qu'a le synchroniser entre plusieurs utilisateurs, et Node.js permet de faire ça très facilement.
