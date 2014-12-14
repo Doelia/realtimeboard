@@ -94,11 +94,11 @@ this.drawLine = function(data) {
 	this.context.stroke();
 }</code></pre>
 
-<p>Cette fonction est une simple fonction utilitaire qui permet de tracer un trait d'un point A à un point B, avec une couleur et une taille présise.
-Pour éviter de passer une dizaine de parametres, on utilise une structure <strong>"data"</strong>. (Qui sera bien utile quand on passera à la synchronisation par sockets).</p>
+<p>Cette fonction est une simple fonction utilitaire qui permet de tracer un trait d'un point A à un point B, avec une couleur et une taille précise.
+Pour éviter de passer une dizaine de paramètres, on utilise une structure <strong>"data"</strong>. (Qui sera bien utile quand on passera à la synchronisation par sockets).</p>
 
 <p>
-	Par exemple si on souhaite dessiner une ligne de [20,30] à [50,40], de couleur rouge et de taille 5, on executera le code suivant :
+	Par exemple si on souhaite dessiner une ligne de [20,30] à [50,40], de couleur rouge et de taille 5, on exécutera le code suivant :
 </p>
 <pre><code class="language-javascript">canvasObj.drawLine({
 	a: {20,30},
@@ -124,11 +124,11 @@ this.getPositionCursor = function(e) {
 
 <h4>Gestion de la souris</h4>
 
-<p>Il y a 3 évenements à gérer sur la souris :
+<p>Il y a 3 évènements à gérer sur la souris :
 <ul>
 	<li>L'utilisateur presse le bouton, il faut commencer à dessiner</li>
 	<li>L'utilisateur bouge la souris, il faut dessiner le tracé</li>
-	<li>L'utilisateur relache le bouton, il faut arrêter de tracer</li>
+	<li>L'utilisateur relâche le bouton, il faut arrêter de tracer</li>
 </ul>
 </p>
 
@@ -140,13 +140,13 @@ this.canvas.mousedown(function(e) {
 	that.draw = true;
 });
 
-// Bouton de la souris relaché, on désactive le dessin
+// Bouton de la souris relâché, on désactive le dessin
 this.canvas.mouseup(function() {
 	that.draw = false;
 });</code></pre>
 
-<p>Ensuite la gestion du mouvement n'est pas très compliqué. Quand l'utilisateur bouge la souris, il suffit de dessiner un trait entre la nouvelle position de la souris et la précedente. On stock donc la position précédente de la souris dés le démarrage du tracé et à chaque mouvement.
-On construit la structure data en fonction des parametres enregistrés, et on la passe à la fonction <strong>drawLine()</strong>.</p>
+<p>Ensuite la gestion du mouvement n'est pas très compliquée. Quand l'utilisateur bouge la souris, il suffit de dessiner un trait entre la nouvelle position de la souris et la précédente. On stock donc la position précédente de la souris dés le démarrage du tracé et à chaque mouvement.
+On construit la structure data en fonction des paramètres enregistrés, et on la passe à la fonction <strong>drawLine()</strong>.</p>
 
 <pre><code class="language-javascript">// souris déplacée, on trace le nouveau trait
 this.canvas.mousemove(function(e) {
@@ -172,7 +172,7 @@ this.canvas.mousemove(function(e) {
 <p class="alert alert-info">On utilise un attribut <strong>that</strong> au lieu du this classique pour accèder à notre classe à l'intérieur des évenements, car l'objet <string>this</string> correspond à celui de l'évenement et non de notre objet Canvas.</p>
 
 <h4>Initialisation</h4>
-<p>Il reste à initialiser l'ensemble, à la fin de notre fichier par exemple : </p>
+<p>Il reste à initialiser l'ensemble.</p>
 
 <pre><code class="language-javascript">var canvasObj = null; // Pour accès global
 

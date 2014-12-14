@@ -5,9 +5,6 @@
  *	@source https://github.com/Doelia/realtimeboard
  */
 
-var socketObj = null;
-var canvasObj = null;
-
 ////////////////// GESTION DU CANVAS ////////////////////////////
 
 function CanvasClass() {
@@ -114,6 +111,9 @@ function NetworkClass() {
 
 
 /////////////////// INITIALISATIONS ////////////////////
+
+var socketObj = null;
+var canvasObj = null;
 
 $(document).ready(function() {
 

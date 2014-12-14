@@ -8,14 +8,14 @@
 
 <p>
 	Quand on utilise Node.js, il n'est pas possible d'utiliser un serveur Apache/PHP classique pour envoyer les fichiers aux clients.
-	Dans cet exemple, aucun serveur Apache n’est requis (Inutile d'utiliser WAMP par exemple). Seul Node.JS établit une communication avec le client, il faut donc envoyer <i>manuellement</i> les fichiers de bases au client (HTML, CSS, JS). 
-	Ceci permettra d'afficher une page HTML complète (Avec CSS et Javascript) quand l'utilisateur se rendra à l'adresse <strong>http://localhost:8080</strong>
+	Dans cet exemple, aucun serveur Apache n’est requis (inutile d'utiliser WAMP par exemple). Seul Node.JS établit une communication avec le client, il faut donc envoyer <i>manuellement</i> les fichiers de bases au client (HTML, CSS, JS). 
+	Ceci permettra d'afficher une page HTML complète (avec CSS et Javascript) quand l'utilisateur se rendra à l'adresse <strong>http://localhost:8080</strong>
 </p>
 
-<p class="alert alert-info">Note : Il est tout de meme possible d'utiliser Apache et Node.js, en utilisant un <a href="http://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server" target="_blank">système de proxy</a></p>
+<p class="alert alert-info">Note : Il est tout de même possible d'utiliser Apache et Node.js, en utilisant un <a href="http://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server" target="_blank">système de proxy</a></p>
 
 <p>
-	Pour envoyer le fichier template.html au client quand il se rend à l'adersse localhost:8080, on ajoute les lignes suivantes au fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/main.js">main.js</a> :
+	Pour envoyer le fichier template.html au client quand il se rend à l'adresse localhost:8080, on ajoute les lignes suivantes au fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/main.js">main.js</a> :
 </p>
 
 
@@ -26,7 +26,7 @@
 });</code></pre>
 
 <p>
-	On procède de la m^eme façon pour envoyer les ressources CSS, Javascript et les images, mais avec des noms de fichiers variables :
+	On procède de la même façon pour envoyer les ressources CSS, Javascript et les images, mais avec des noms de fichiers variables :
 </p>
 
 <pre><code class="language-javascript">// Le client demande un fichier CSS
@@ -58,10 +58,10 @@ app.get('/img/:file.png', function (req, res) {
 	});
 });</code></pre>
 
-<p>Ici on ne traite que les fichiers de type .css, .js et .png. Et ces fichiers doivent tous etre placés dans leur dossier respectif, sans sous dossier.
+<p>Ici on ne traite que les fichiers de type .css, .js et .png. Et ces fichiers doivent tous être placés dans leur dossier respectif, sans sous-dossier.
 C'est suffisant dans le cadre de cet exemple, mais on peut trouver des patterns plus complexes qui permettent de simuler totalement un serveur Apache.</p>
 
-Ceci fait, une fois le serveur lancé, vous pourrez visioner le tableau blanc fonctionnel à l'adresse <a href="http://localhost:8080">http://localhost:8080</a>.
+Ceci fait, une fois le serveur lancé, vous pourrez visionner le tableau blanc fonctionnel à l'adresse <a href="http://localhost:8080">http://localhost:8080</a>.
 . Il ne reste plus qu'a le synchroniser entre plusieurs utilisateurs, et Node.js permet de faire ça très facilement.
 
 <?php nav('3-board.php', '5-sockets.php'); ?>

@@ -4,20 +4,20 @@
 <?php require("col-left.php"); ?>
 <div class="col-md-9">
 
-<h3>5. Syncronisation par sockets</h3>
+<h3>5. Synchronisation par sockets</h3>
 
 <p>
-	Nous avons utilisé Node.js comme serveur HTTP pour envoyer les fichiers HTML, CSS et Javascript au client.
+	Nous avons utilisé <b>Node.js</b> comme serveur HTTP pour envoyer les fichiers HTML, CSS et Javascript au client.
 	Admettons qu'il est plus facile d'utiliser un serveur apache classique pour cela, mais l'avantage est de pouvoir utiliser les websockets.
 </p>
 
 <p>
-	L'utilisation des websockets est très facile en Node.js, puisque c'est le meme langage cote serveur et cote client, comparé à une solution Ajax/PHP par exemple.
+	L'utilisation des <b>websockets</b> est très facile en Node.js, puisque c'est le même langage côté serveur et côté client, comparé à une solution Ajax/PHP par exemple.
 </p>
 
 <p>Nous allons utiliser les sockets pour deux fonctionnalités :
 <ul>
-	<li>Synchronisation des tracés du tableau à tous les utilisateurs en temps réél</li>
+	<li>Synchronisation des tracés du tableau à tous les utilisateurs en temps réel</li>
 	<li>Mise à jour et affichage du nombre de connectés sur le tableau</li>
 </ul>
 </p>
@@ -25,20 +25,22 @@
 <h4>Principes Node.js</h4>
 
 <p>
-	Les fonctions de bases de Node.js sont très simple. Sur un objet <b>socket</b> qui représente un serveur ou un client, on peut utiliser :
+	Les fonctions de base de Node.js sont très simples. Sur un objet <b>socket</b> qui représente un serveur ou un client, on peut utiliser :
 	<ul>
 		<li><b>socket.emit(nomDuPaquet, datas)</b> qui permet d'envoyer un paquet à un client particulier, ou au serveur</li>
 		<li><b>socket.brodcast.emit(nomDuPaquet, datas)</b> qui permet d'envoyer un paquet à tous les clients connectés</li>
-		<li><b>socket.on(nomDuPaquet, callback(datas))</b> une fonction de type évenentielle qui execute callback() quand on reçoit le paquet 'nomDuPaquet'.</li>
+		<li><b>socket.on(nomDuPaquet, callback(datas))</b> une fonction de type évè	nementielle qui exécute callback() quand on reçoit le paquet 'nomDuPaquet'.</li>
 	</ul>
 </p>
 
 <p>
-	Ces fonctions sont les m^eme cote serveur et c^ote client.
+	Ces fonctions sont les mêmes côté serveur et côté client.
 </p>
 
+<hr>
 
-<h4>Coté server</h4>
+
+<h4>5.1. Côté serveur</h4>
 <p>
 	Le code lié à la gestion des paquets est écrit dans le fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/main.js" target="_blank">main.js</a>.
 </p>
@@ -48,10 +50,10 @@
 <pre><code class="language-javascript">var io = require('socket.io').listen(server);</code></pre>
 
 
-<h5>Récéption des tracés d'un utilisateur et propagation</h5>
+<h5>5.1.1. Réception des tracés d'un utilisateur et propagation</h5>
 
-<p>Le principe de la synchronisation du tableau est très simple : Quand un utilisateur trace un trait, il l'envoi au serveur dans un paquet (traité plus bas).
-Le serveur doit simplement réenvoyer ce paquet à tous les autres utilisateurs. Cela se fait de la façon suivante : </p>
+<p>Le principe de la synchronisation du tableau blanc est très simple : quand un utilisateur trace un trait, il l'envoie au serveur dans un paquet (traité plus bas, partie client).
+Le serveur doit simplement réenvoyer ce paquet à tous les autres utilisateurs.</p>
 
 <pre><code class="language-javascript">// Quand un client se connecte
 io.sockets.on('connection', function (socket) {
@@ -66,9 +68,9 @@ io.sockets.on('connection', function (socket) {
 });
 </code></pre>
 
-<h5>Système de mémoire</h5>
+<h5>5.1.2. Persistance des données</h5>
 
-Le problème étant que lorsqu'un nouvel utilisateur se connecte, il ne reçoit pas tout ce qui a été tracé jusqu'a présent.
+Le problème étant que lorsqu'un nouvel utilisateur se connecte, il ne reçoit pas tout ce qui a été tracé avant sa connexion.
 Pour contrer le problème, on stocke dans un tableau tout les tracés effectués et on l'envoi aux utilisateurs qui se connectent.
 
 <pre><code class="language-javascript">var lastLines = new Array(); // Tableau des tracés effectués
@@ -91,7 +93,7 @@ io.sockets.on('connection', function (socket) {
 
 <p class="alert alert-warning">Cette solution n'est pas performante, car la taille du tableau va augmenter très rapidement au fil du temps. Pour une véritable application, il faudrait optimiser en ajoutant une limite d'historique qui n'est pas traitée ici.</p>
 
-<h5>Envoi du nombre d'utilisateurs</h5>
+<h5>5.1.3. Envoi du nombre d'utilisateurs</h5>
 
 <p>La gestion des utilisateurs n'est pas très compliquée une fois le principe compris :</p>
 
@@ -113,9 +115,11 @@ io.sockets.on('connection', function (socket) {
 
 });</code></pre>
 
-<p>Quand un client se connecte, on augmente la nombre de connecté, puis on envoi la nouvelle valeur à tous les utilisateurs. Idem à la déconnexion.</p>
+<p>Quand un client se connecte, on augmente le nombre de connecté, puis on envoie la nouvelle valeur à tous les utilisateurs. Idem à la déconnexion.</p>
 
-<h4>Cote client</h4>
+<hr>
+
+<h4>5.2. Côté client</h4>
 
 <p>Le serveur reçoit et propage les données. Il reste à communiquer avec celui-ci. Il faut :
 
@@ -126,9 +130,11 @@ io.sockets.on('connection', function (socket) {
 </ul>
 </p>
 
-<h5>Connexion au serveur</h5>
+<p><i>Le code décrit est celui du fichier <a href="https://github.com/Doelia/realtimeboard/blob/master/public/js/main.js" target="_blank">public/js/main.js</a></i></p>
 
-<p>On commence par gérer la connexion par sockets au serveur. On crée une nouvelle classe <b>Network</b></p>
+<h5>5.2.1. Connexion au serveur</h5>
+
+<p>On commence par gérer la connexion par sockets au serveur. On crée une nouvelle classe <b>Network</b> :</p>
 
 <pre><code class="language-javascript">function NetworkClass() {
 	
@@ -149,9 +155,9 @@ io.sockets.on('connection', function (socket) {
 
 }</code></pre>
 
-<h5>Récéption des données</h5>
+<h5>5.2.2. Réception des données</h5>
 
-<p>Quand on reçoit des données liés au tableau blanc, on les affiche</p>
+<p>Quand on reçoit des données liées au tableau blanc, on les affiche</p>
 
 <pre><code class="language-javascript">this.socket.on('drawLines', function(datas) {
 	// On a décidé de stocker les tracés dans un tableau pour en recevoir plusieurs à la fois, voir raison plus bas.
@@ -167,7 +173,7 @@ io.sockets.on('connection', function (socket) {
 });
 </code></pre>
 
-<h5>Envoi des tracés</h5>
+<h5>5.2.3. Envoi des tracés</h5>
 
 <p>Dans cette partie on parlera d'optimisation. On ne peut pas se permettre d'envoyer un paquet à chaque pixel tracé, cela représenterait bien trop de données.</p>
 <p>On utilisera un système de buffer qu'on enverra seulement toutes les 300ms, par exemple.</p>
@@ -175,7 +181,6 @@ io.sockets.on('connection', function (socket) {
 	<li>Quand on trace un trait, on le stock dans un buffer de la classe Network</li>
 	<li>Dans la classe Network, on traite toutes les 300ms le buffer et on l'envoi au serveur</li>
 </ul>
-<p>On ajoute ceci dans la classe <b>NetworkClass</b> :</p>
 
 <pre><code class="language-javascript">this.buffer = new Array();
 
@@ -193,7 +198,7 @@ setInterval(function() {
 }, 300);</code></pre>
 
 
-<p>Et pour finir on appel <b>recordLine()</b> dans la classe Canvas, quand on dessine :</p>
+<p>Et pour finir on appel <b>recordLine()</b> dans la classe Canvas, au moment du dessin :</p>
 <pre><code class="language-javascript">this.canvas.mousemove(function(e) {
 	if (that.draw) {
 		var pos = that.getPositionCursor(e);
