@@ -72,7 +72,7 @@ function CanvasClass() {
 
 function NetworkClass() {
 	
-	this.socket = io.connect('http://localhost:8080');
+	this.socket = io.connect('http://desinia.doelia.fr');
 	this.buffer = new Array();
 	var that = this;
 
