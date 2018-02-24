@@ -1,15 +1,9 @@
 Tableau Blanc collaboratif
 ====================
 
-Très simple tableau blanc collaboratif en Javascript.
+Tableau blanc collaboratif en NodeJS.
 
-Permet de dessiner sur un canvas synchronisé entre plusieurs utilisateurs.
+Année de production : 2014 (Licence informatque)
 
-Développé en NodeJS/HTML5.
-
-Réalisé pour l'écriture d'une technote dans un cadre universitaire.
-
-
-Démo : http://desinia.doelia.fr
-Technote : http://whiteboard.doelia.fr
+Démo : http://whiteboard.doelia.fr
 
